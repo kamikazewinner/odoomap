@@ -174,5 +174,3 @@ This tool is for lawful security and penetration testing with proper authorizati
 ## Contributions
 
 Feel free to open issues or submit pull requests for enhancements or bug fixes!
-
-"# odoomap" 
