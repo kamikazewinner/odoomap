@@ -1,0 +1,5 @@
+admin
+demo
+user
+odoo
+administrator
