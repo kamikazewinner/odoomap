@@ -38,9 +38,10 @@ odoomap -h
 ```
 *Or*
 ```bash
-git clone https://github.com/MohamedKarrab/odoomap.git && cd odoomap
+git clone https://github.com/MohamedKarrab/odoomap.git
+cd odoomap
 pip install -r requirements.txt
-python3 odoomap.py -h
+python odoomap.py -h
 ```
 
 ## Usage Examples
