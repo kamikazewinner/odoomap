@@ -1,11 +1,11 @@
 <div align="center">
-  <a><img width="320" height="320" alt="odoomap logo-min" src="https://github.com/user-attachments/assets/9ae37c58-0675-44cf-8229-8faece536751" />
+  <a><img width="320" height="320" alt="odoomap logo-min" src="https://github.com/user-attachments/assets/f55b8312-227e-4db8-82a6-300271758555" />
 </a>
 </div>
 
 # OdooMap
 ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
-![License](https://img.shields.io/github/license/MohamedKarrab/odoomap)
+![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)
 ![Python](https://img.shields.io/badge/Python-3.9-blue)
 ![Last Commit](https://img.shields.io/github/last-commit/MohamedKarrab/odoomap)
 [![Twitter](https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=%20%40_karrab)](https://x.com/_Karrab)
@@ -25,7 +25,7 @@
 
 ## Screenshots
 
-<img width="967" height="492" alt="image" src="https://github.com/user-attachments/assets/0a8f67a7-5e4c-4de3-a51e-ae13195e2575" />
+<img width="967" height="492" alt="image" src="https://github.com/user-attachments/assets/e95c3eee-a665-4690-a4dd-36f1c4d8dbe3" />
 
 ## Installation
 > :information_source: It is advisable to use `pipx` over `pip` for system-wide installations.
