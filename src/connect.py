@@ -20,6 +20,7 @@ class Connection:
         self.session.verify = ssl_verify
         self.common_endpoint = f"{self.host}/xmlrpc/2/common"
         self.object_endpoint = f"{self.host}/xmlrpc/2/object"
+        self.master_password_endpoint = f"{self.host}/xmlrpc/2/db"
         
         # For authenticated operations
         self.uid = None
@@ -30,6 +31,7 @@ class Connection:
         if not ssl_verify:
             ssl_context = ssl._create_unverified_context()
             self.common = xmlrpc.client.ServerProxy(self.common_endpoint, context=ssl_context)
+            self.master = xmlrpc.client.ServerProxy(self.master_password_endpoint, context=ssl_context)
             self.models = None  # Will be initialized after authentication
         else:
             self.common = xmlrpc.client.ServerProxy(self.common_endpoint)
