@@ -55,6 +55,10 @@ def parse_arguments():
     parser.add_argument('-M', '--bruteforce-master', action='store_true', help="Bruteforce the database's master password")
     parser.add_argument('-p','--master-pass', help='Wordlist file for master password bruteforce (one password per line)')
 
+    # bruteforce database names
+    parser.add_argument('-bd','--bruteforce-database', action='store_true', help='Bruteforce database names')
+    parser.add_argument('-f','--bruteforce-database-file', help='File containing database names for bruteforcing (one per line)')
+
     args = parser.parse_args()
     
     # Validate argument combinations
@@ -74,7 +78,7 @@ def main():
     auth_required_ops = args.enumerate or args.dump or args.permissions or args.bruteforce_models
 
     # Check if any action is specified (besides recon)
-    any_action = args.enumerate or args.dump or args.bruteforce or args.permissions or args.bruteforce_models or args.bruteforce_master
+    any_action = args.enumerate or args.dump or args.bruteforce or args.permissions or args.bruteforce_models or args.bruteforce_master or args.bruteforce_database
 
     # Determine if recon should be performed
     do_recon = args.recon or not any_action
@@ -157,6 +161,14 @@ def main():
         # Check default apps
         apps = connection.default_apps_check()
 
+    # --- Bruteforce database names if requested ---
+    if args.bruteforce_database:
+        if not args.bruteforce_database_file:
+            print(f"{Colors.w} No database names file provided.")
+            sys.exit(1)
+        print(f"{Colors.i} Bruteforcing database names using file: {args.bruteforce_database_file}")
+        connection.bruteforce_database(args.bruteforce_database_file)
+    
     # Bruteforce
     if args.bruteforce:
         print(f"{Colors.i} Starting bruteforce login...")
