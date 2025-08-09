@@ -35,25 +35,29 @@ def parse_arguments():
     
     # Operation modes
     parser.add_argument('-r', '--recon', action='store_true', help='Perform initial reconnaissance')
-    parser.add_argument('-e', '--enumerate', action='store_true', help='Enumerate model names')
+    parser.add_argument('-e', '--enumerate', action='store_true', help='Enumerate available model names')
     parser.add_argument('-pe', '--permissions', action='store_true', help='Enumerate model permissions (requires -e)')
-    parser.add_argument('-l', '--limit', type=int, default=100, help='Limit for enumeration or dump operations')
-    parser.add_argument('-o', '--output', help='Output file/directory for results')
+    parser.add_argument('-l', '--limit', type=int, default=100, help='Limit results for enumeration or dump operations')
+    parser.add_argument('-o', '--output', help='Output file for results')
     
     # Dump options
-    parser.add_argument('-d', '--dump', help='Dump data from specified model(s). Can be comma-separated list or a file path containing model names (one per line)')
+    parser.add_argument('-d', '--dump', help='Dump data from specified model(s); accepts a comma-separated list or a file path containing model names (one per line)')
     
     # Model enumeration options
-    parser.add_argument('-B', '--bruteforce-models', action='store_true', help='Bruteforce models instead of listing them (Happens by default if listing fails)')
+    parser.add_argument('-B', '--bruteforce-models', action='store_true', help='Bruteforce model names instead of listing them (default if listing fails)')
     parser.add_argument('--model-file', help='File containing model names for bruteforcing (one per line)')
     
     # Other operations
-    parser.add_argument('-b', '--bruteforce', action='store_true', help='Bruteforce login (requires -D)')
-    parser.add_argument('-w', '--wordlist', help='Wordlist file for bruteforce in user:pass format (optional)')
-    parser.add_argument('--usernames', help='File containing usernames for bruteforce (one per line)')
-    parser.add_argument('--passwords', help='File containing passwords for bruteforce (one per line)')
+    parser.add_argument('-b', '--bruteforce', action='store_true', help='Bruteforce login credentials (requires -D)')
+    parser.add_argument('-w', '--wordlist', help='Wordlist file for bruteforcing in user:pass format')
+    parser.add_argument('--usernames', help='File containing usernames for bruteforcing (one per line)')
+    parser.add_argument('--passwords', help='File containing passwords for bruteforcing (one per line)')
     parser.add_argument('-M', '--bruteforce-master', action='store_true', help="Bruteforce the database's master password")
-    parser.add_argument('-p','--master-pass', help='Wordlist file for master password bruteforce (one password per line)')
+    parser.add_argument('-p','--master-pass', help='Wordlist file for master password bruteforcing (one password per line)')
+
+    # bruteforce database names
+    parser.add_argument('-n','--brute-db-names', action='store_true', help='Bruteforce database names')
+    parser.add_argument('-N','--db-names-file', help='File containing database names for bruteforcing (case-sensitive)')
 
     args = parser.parse_args()
     
@@ -74,7 +78,7 @@ def main():
     auth_required_ops = args.enumerate or args.dump or args.permissions or args.bruteforce_models
 
     # Check if any action is specified (besides recon)
-    any_action = args.enumerate or args.dump or args.bruteforce or args.permissions or args.bruteforce_models or args.bruteforce_master
+    any_action = args.enumerate or args.dump or args.bruteforce or args.permissions or args.bruteforce_models or args.bruteforce_master or args.brute_db_names
 
     # Determine if recon should be performed
     do_recon = args.recon or not any_action
@@ -157,6 +161,14 @@ def main():
         # Check default apps
         apps = connection.default_apps_check()
 
+    # --- Bruteforce database names if requested ---
+    if args.brute_db_names:
+        if not args.db_names_file:
+            print(f"{Colors.e} Use -N <file> to specify a file containing database names (case-sensitive).")
+            sys.exit(1)
+        print(f"{Colors.i} Bruteforcing database names using file: {args.db_names_file}")
+        connection.bruteforce_database_names(args.db_names_file)
+    
     # Bruteforce
     if args.bruteforce:
         print(f"{Colors.i} Starting bruteforce login...")
