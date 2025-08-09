@@ -19,7 +19,7 @@ _______________________________________________________________
 _______________________________________________________________
 ''' + Colors.ENDC + r'''
         Odoo Security Scanner by Mohamed Karrab @_karrab
-        Version 1.2.4
+        Version 1.2.5
     ''' 
 
 def parse_arguments():

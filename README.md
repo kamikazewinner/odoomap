@@ -79,6 +79,12 @@ odoomap -u https://example.com -D database_name -U admin -P pass -d models.txt -
 
 ## Brute-force Options
 
+#### Brute-force Database Names
+Case-sensitive, but db names are generally lowercase.
+```bash
+odoomap -u https://example.com -n -N db-names.txt
+```
+
 #### Default Credentials Attack
 
 ```bash
@@ -121,8 +127,8 @@ odoomap -u https://example.com -D database_name -U admin -P pass -r -e -p -d res
 ## Full Usage
 
 ```
-usage: odoomap [-h] -u URL [-D DATABASE] [-U USERNAME] [-P PASSWORD] [-r] [-e] [-pe] [-l LIMIT] [-o OUTPUT] [-d DUMP] [-B]
-               [--model-file MODEL_FILE] [-b] [-w WORDLIST] [--usernames USERNAMES] [--passwords PASSWORDS] [-M] [-p MASTER_PASS]
+usage: odoomap.py [-h] -u URL [-D DATABASE] [-U USERNAME] [-P PASSWORD] [-r] [-e] [-pe] [-l LIMIT] [-o OUTPUT] [-d DUMP] [-B] [--model-file MODEL_FILE] [-b]
+                  [-w WORDLIST] [--usernames USERNAMES] [--passwords PASSWORDS] [-M] [-p MASTER_PASS] [-n] [-N DB_NAMES_FILE]
 
 Odoo Security Assessment Tool
 
@@ -136,28 +142,30 @@ options:
   -P, --password PASSWORD
                         Password for authentication
   -r, --recon           Perform initial reconnaissance
-  -e, --enumerate       Enumerate model names
+  -e, --enumerate       Enumerate available model names
   -pe, --permissions    Enumerate model permissions (requires -e)
-  -l, --limit LIMIT     Limit for enumeration or dump operations
-  -o, --output OUTPUT   Output file/directory for results
-  -d, --dump DUMP       Dump data from specified model(s). Can be comma-separated list or a file path containing model names (one per
-                        line)
+  -l, --limit LIMIT     Limit results for enumeration or dump operations
+  -o, --output OUTPUT   Output file for results
+  -d, --dump DUMP       Dump data from specified model(s); accepts a comma-separated list or a file path containing model names (one per line)
   -B, --bruteforce-models
-                        Bruteforce models instead of listing them (Happens by default if listing fails)
+                        Bruteforce model names instead of listing them (default if listing fails)
   --model-file MODEL_FILE
                         File containing model names for bruteforcing (one per line)
-  -b, --bruteforce      Bruteforce login (requires -D)
+  -b, --bruteforce      Bruteforce login credentials (requires -D)
   -w, --wordlist WORDLIST
-                        Wordlist file for bruteforce in user:pass format (optional)
+                        Wordlist file for bruteforcing in user:pass format
   --usernames USERNAMES
-                        File containing usernames for bruteforce (one per line)
+                        File containing usernames for bruteforcing (one per line)
   --passwords PASSWORDS
-                        File containing passwords for bruteforce (one per line)
+                        File containing passwords for bruteforcing (one per line)
   -M, --bruteforce-master
                         Bruteforce the database's master password
   -p, --master-pass MASTER_PASS
-                        Wordlist file for master password bruteforce (one password per line)
-
+                        Wordlist file for master password bruteforcing (one password per line)
+  -n, --brute-db-names  Bruteforce database names
+  -N, --db-names-file DB_NAMES_FILE
+                        File containing database names for bruteforcing (case-sensitive)
+                        
 ```
 
 ## License

@@ -1,6 +1,6 @@
 [project]
 name = "odoomap"
-version = "1.2.4"
+version = "1.2.5"
 description = "Odoo Security Assessment Tool"
 authors = [{ name = "Mohamed Karrab" }]
 license = "Apache-2.0"
