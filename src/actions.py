@@ -284,7 +284,7 @@ def bruteforce_master_password(connection, wordlist_file=None):
             return None  # Exit if the wordlist can't be read
 
     if not passwords:
-        print(f"{Colors.e} Please provide a valid passwords file with -p <file>.")
+        print(f"{Colors.e} Please provide a passwords file with -p <file>.")
         return None
 
     # Try each password

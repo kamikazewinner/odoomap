@@ -87,30 +87,28 @@ class Connection:
             return text
         return ''.join(c for c in text if c != '\x00' and ord(c) < 128 and c.isprintable())
 
-    def bruteforce_database(self, wordlist_file):
-        """Bruteforce database using a wordlist file"""
-        if not wordlist_file:
-            print(f"{Colors.e} No wordlist file specified for database bruteforce")
-            return False
+    def bruteforce_database_names(self, db_names_file):
+        """Bruteforce database names using a wordlist file"""
         
         try:
-            with open(wordlist_file, 'r', encoding='utf-8', errors='ignore') as f:
+            with open(db_names_file, 'r', encoding='utf-8', errors='ignore') as f:
                 databases = [line.strip() for line in f if line.strip()]
         except Exception as e:
-            print(f"{Colors.e} Error reading wordlist file: {str(e)}")
+            print(f"{Colors.e} Error reading database names file: {str(e)}")
             return False
 
         found_databases = []
         for db in databases:
             try:
-                uid = self.common.authenticate(db, "mm", "admin", {})
+                uid = self.common.authenticate(db, "test_user", "test_pass", {})
                 if uid == False:
-                    print(f"[+] Found DB: {db}")
+                    print(f"\n{Colors.s} Found DB: {db}\n")
                     found_databases.append(db)
             except Exception as e:
                 if "failed: FATAL:  database" in str(e) and "does not exist" in str(e):
                     print(f"{Colors.e} Database {Colors.FAIL}{db}{Colors.ENDC} does not exist")
-
+                else:
+                    print(f"{Colors.e} Error occured while testing database {db}: {str(e)}")
 
         if found_databases:
             print(f"{Colors.s} Found {len(found_databases)} valid database(s): {', '.join(found_databases)}")
@@ -119,6 +117,7 @@ class Connection:
             print(f"{Colors.e} No valid databases found")
             return False
     
+
     def bruteforce_login(self, db, wordlist_file=None, usernames_file=None, passwords_file=None):
         """Bruteforce login using default or custom wordlist"""
         if not db:
